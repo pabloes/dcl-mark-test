@@ -14,3 +14,16 @@ box.addComponent(boxShape);
 box.addComponent(mat);
 box.setParent(entity);
 mat.castShadows = false;
+
+class LogCameraEurler implements ISystem {
+  dtCount = 0;
+
+  update(dt){    
+    this.dtCount += dt;
+    if(this.dtCount>1){
+      this.dtCount = 0;
+      console.log(Camera.instance.rotation.eulerAngles.toString())
+    }
+  }
+}
+engine.addSystem(new LogCameraEurler());
